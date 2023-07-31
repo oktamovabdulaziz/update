@@ -352,6 +352,14 @@ class DeleteCardView(DestroyAPIView):
         return Response({"message": "Done"})
 
 
+class GetCartView(ListAPIView):
+    queryset = Card.objects.all()
+    serializer_class = CardSerializer
+
+    def list(self, request):
+        data = CardSerializer(self.queryset, many=True).data
+        return Response(data)
+
 class AddWishlist(CreateAPIView):
     queryset = Products.objects.all()
     serializer_class = ProductsSerializer
