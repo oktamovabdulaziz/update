@@ -28,6 +28,7 @@ urlpatterns = [
     path("subscribe/", SubscribeView.as_view()),
     path("add-cart/<int:pk>/", AddCartView.as_view()),
     path("delete-card/<int:pk>/", DeleteCardView.as_view()),
+    path("get-cart/", GetCartView.as_view()),
     path("add-wishlist/<int:pk>/", AddWishlist.as_view()),
     path("delete-wishlist/<int:pk>/", DeleteWishlist.as_view()),
     path("search/", Search.as_view()),
