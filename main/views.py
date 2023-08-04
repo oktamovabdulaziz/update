@@ -65,14 +65,14 @@ def Login(request):
             users = User.objects.get(username=username)
             user = authenticate(username=username, password=password)
             if user is not None:
-               status = 200
-               token, created = Token.objects.get_or_create(user=user)
-               data = {
+                status = 200
+                token, created = Token.objects.get_or_create(user=user)
+                data = {
                    "status": status,
                    "username": username,
                    "user_id": users.id,
                    "token": token.key,
-               }
+                }
             else:
                 status = 403
                 message = "Username yoki parol xato!"
@@ -360,6 +360,7 @@ class GetCartView(ListAPIView):
         data = CardSerializer(self.queryset, many=True).data
         return Response(data)
 
+
 class AddWishlist(CreateAPIView):
     queryset = Products.objects.all()
     serializer_class = ProductsSerializer
@@ -444,6 +445,31 @@ def create_order(request):
 
 
 
+# from rest_framework import viewsets
+# from rest_framework.response import Response
+# from .models import Student, Course, Teacher
+# from .serializers import StudentSerializer, CourseSerializer, TeacherSerializer
 
+# class StudentViewSet(viewsets.ModelViewSet):
+#     queryset = Student.objects.all()
+#     serializer_class = StudentSerializer
+
+# class CourseViewSet(viewsets.ModelViewSet):
+#     queryset = Course.objects.all()
+#     serializer_class = CourseSerializer
+
+# class TeacherViewSet(viewsets.ModelViewSet):
+#     queryset = Teacher.objects.filter(group='django rest framework')
+#     serializer_class = TeacherSerializer
+
+#     def list(self, request, *args, **kwargs):
+#         course_id = request.query_params.get('course_id')
+#         if course_id:
+#             course = Course.objects.get(pk=course_id)
+#             teachers = self.queryset.filter(direction=course.direction, is_available=True)
+#             serializer = self.get_serializer(teachers, many=True)
+#             return Response(serializer.data)
+#         return super().list(request, *args, **kwargs)
+  
 
 

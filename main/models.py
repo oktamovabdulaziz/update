@@ -136,6 +136,9 @@ class Blog(models.Model):
     like = models.IntegerField(default=0)
 
 
+    def __str__(self):
+        return self.name
+
 class Comment(models.Model):
     text = models.CharField(max_length=255)
     comment_blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
@@ -147,6 +150,9 @@ class New(models.Model):
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     like = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
 
 
 class Faq(models.Model):
@@ -163,10 +169,16 @@ class Card(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE)
     price = models.IntegerField()
 
+    def __str__(self):
+        return self.user.username
+
 
 class Wishlist(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
 
 
 class Order(models.Model):
